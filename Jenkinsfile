@@ -24,15 +24,10 @@ pipeline {
         }
         stage('package') {
             steps {
-                sh "docker build -t 538471682716.dkr.ecr.ap-southeast-1.amazonaws.com/liuliang-app-demo:${env.BUILD_NUMBER} ."
+                sh "docker build -t 538471682716.dkr.ecr.ap-southeast-1.amazonaws.com/dharmatin-app-demo:${env.BUILD_NUMBER} ."
                 sh "eval \$(aws ecr get-login --no-include-email --registry-ids 538471682716 --region ap-southeast-1)"
-                sh "docker push 538471682716.dkr.ecr.ap-southeast-1.amazonaws.com/liuliang-app-demo:${env.BUILD_NUMBER}"
-                sh "docker rmi 538471682716.dkr.ecr.ap-southeast-1.amazonaws.com/liuliang-app-demo:${env.BUILD_NUMBER}"
-            }
-        }
-        stage('deploy to dev') {
-            steps {
-                build job: 'liu.liang/liuliang-demo-app-deployment-dev', parameters: [[$class: 'StringParameterValue', name: 'BUILD_NUMBER', value: "${env.BUILD_NUMBER}"]], wait: false
+                sh "docker push 538471682716.dkr.ecr.ap-southeast-1.amazonaws.com/dharmatin-app-demo:${env.BUILD_NUMBER}"
+                sh "docker rmi 538471682716.dkr.ecr.ap-southeast-1.amazonaws.com/dharmatin-app-demo:${env.BUILD_NUMBER}"
             }
         }
     }
