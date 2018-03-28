@@ -27,7 +27,7 @@ const search = () => {
         {
           documentid: '6000013',
           channels: 'buy',
-          price: 3200000,
+          price: 32000,
           currency: 'IDR'
         },
       ]
